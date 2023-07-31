@@ -1,21 +1,19 @@
+package ru.netology;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.netology.Game;
-import ru.netology.NotRegisteredException;
-import ru.netology.Player;
-
-import java.awt.*;
-import java.util.ArrayList;
+import javax.management.openmbean.KeyAlreadyExistsException;
+import java.util.HashMap;
 
 public class GameTest {
 
     Player player1 = new Player(1, "Fedya", 15);
     Player player2 = new Player(2, "Kolya", 12);
     Player player3 = new Player(3, "Dima", 12);
-    Player player4 = new Player(4, "", 17);
+    Player player4 = new Player(4, "Dima", 17);
 
-    ArrayList<Player> players = new ArrayList<>();
+    HashMap<String, Player> players = new HashMap<>();
     Game game = new Game(players);
 
     @BeforeEach
@@ -68,4 +66,11 @@ public class GameTest {
         });
     }
 
+    @Test
+    public void shouldBNameAlreadyRegistered() {
+
+        Assertions.assertThrows(KeyAlreadyExistsException.class, () -> {
+            game.register(player4);
+        });
+    }
 }
