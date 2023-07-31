@@ -21,15 +21,6 @@ public class Game {
         }
     }
 
-//    public Player findByName(String name) {
-//        for (Player player : players) {
-//            if (player.getName() == name) {
-//                return player;
-//            }
-//        }
-//        return null;
-//    }
-
     public int round(String playerName1, String playerName2) {
         if (!players.containsKey(playerName1)) {
             throw new NotRegisteredException(
